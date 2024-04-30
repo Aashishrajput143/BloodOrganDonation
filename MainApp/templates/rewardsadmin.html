@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Novena | Rewards Admin</title>
+{% endblock %}
+
+{% block home %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block pages %}
+<li><a href="#">Pages</a>
+    <ul class="dropdown">
+        <li><a href="/services/1/">Services</a></li>
+        {% if request.user.is_authenticated %}
+        {% if Users.donor %}
+        <li><a href="/rewards/">Rewards</a></li>
+        {% elif Users.super %}
+        <li><a href="/rewardsadmin/">Rewards</a></li>
+        {% endif %}
+        {% endif %}
+        <li><a href="/team/">Our Team</a></li>
+        <li><a href="/locations/">Donate Locations</a></li>
+        <li><a href="/joinus/">Join Us</a></li>
+    </ul>
+</li>
+{% endblock %}
+
+{% block body %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Rewards Admin</h2>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <a style="color: #13a2b7;">Rewards Admin</a>
+                        <span>Rewards Admin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<div class="class pt-5" style="background: #bfb9c8fc;">
+    <div class="class pt-5 pb-3" style="background: #bfb9c8fc;">
+        <div class="container">
+            <H4 class="text-center">Rewards Withdrawn Details</H4><br>
+            <table class="table table-light table-hover table-bordered table-striped">
+                <thead class="bg-dark">
+                    <tr>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Donor's Username</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Donor's name</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">UPI</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">amount</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">phone</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">email</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Date</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Status</th>
+                        <th style="background-color: black;color: rgb(192, 192, 192);width: 220px;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in Withdrawn %}
+                    <tr>
+                        <td> {{t.donor}}</td>
+                        <td> {{t.name}}</td>
+                        <td> {{t.upi}}</td>
+                        <td>{{t.amount}}</td>
+                        <td>{{t.phone}}</td>
+                        <td>{{t.email}}</td>
+                        <td>{{t.date}}</td>
+                        {% if t.status == 1 %}
+                        <td>Pending</td>
+                        {% elif t.status == 2 %}
+                        <td>Done</td>
+                        {% endif %}
+                        {% if t.status == 1 %}
+                        <td><button class="btn btn-success"><a style="text-decoration: none;color: white;"
+                                    href="{% url 'done-withdrawn' t.id  %}"><i class="fa fa-check"></i> Done</a>
+                        </button></td>
+                        {% else %}
+                        <td><span class="label success">&#8377; {{t.amount}} Withdrawn</span></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

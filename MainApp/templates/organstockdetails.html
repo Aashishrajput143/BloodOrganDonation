@@ -1,0 +1,205 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Novena | Organ Stock Details</title>
+{% endblock %}
+
+{% block home %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block OrganAdmin %}
+<li class="active"><a href="#">Organ</a>
+    <ul class="dropdown">
+        <li><a href="/organstock/">Organ Stock</a></li>
+        <li><a href="/organdonationadmin/">Organ Donation</a></li>
+        <li><a href="/organrequestadmin/">Organ Request</a></li>
+        <li><a href="/organhistoryadmin/">Organ History</a></li>
+    </ul>
+</li>
+{% endblock %}
+{% block body %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2> Organ Stock Details</h2>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <a style="color: #13a2b7;">Organ Admin</a>
+                        <a href="/organstock/"  style="color: #13a2b7;">Organ Stock</a>
+                        <span>Organ Stock Details</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<div class="class pt-5" style="background: #bfb9c8fc;">
+    <div class="container">
+
+        <div class="row mb-5">
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h2>A+ <i class="fa fa-tint text-danger"></i></h2>
+                        </div><br><br>
+                        <div>
+                            {{Stocks.A1.quantity}} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h2>B+ <i class="fa fa-tint text-danger"></i></h2>
+                        </div><br><br>
+                        <div>
+                            {{Stocks.B1.quantity}} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h2>O+ <i class="fa fa-tint text-danger"></i></h2>
+                        </div><br><br>
+                        <div>
+                            {{Stocks.O1.quantity}} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h2>AB+ <i class="fa fa-tint text-danger"></i></h2>
+                        </div><br><br>
+                        <div>
+                            {{Stocks.AB1.quantity}} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h2>A- <i class="fa fa-tint text-danger"></i></h2>
+                        </div><br><br>
+                        <div>
+                            {{Stocks.A2.quantity}} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h2>B- <i class="fa fa-tint text-danger"></i></h2>
+                        </div><br><br>
+                        <div>
+                            {{Stocks.B2.quantity}} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h2>O- <i class="fa fa-tint text-danger"></i></h2>
+                        </div><br><br>
+                        <div>
+                            {{Stocks.O2.quantity}} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h2>AB- <i class="fa fa-tint text-danger"></i></h2>
+                        </div><br><br>
+                        <div>
+                            {{Stocks.AB2.quantity}} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pb-5">
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-users" style="color: #1e88e5;"></i>
+                        </div><br>
+                        <div>
+                            Available Donors <br>
+                            {{Stocks.totaldonors}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-spinner" style="color:#efb000;"></i>
+                        </div><br>
+                        <div>
+                            Total Requests <br>
+                            {{Stocks.totalrequest}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-tint xyz" style="color:#d41010;"></i>
+                        </div><br>
+                        <div>
+                            Total Organs <br>
+                            {{Stocks.totalbloodunit}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-check-circle" style="color:green;"></i>
+                        </div><br>
+                        <div>
+                            Approved Requests <br>
+                            {{Stocks.totalapprovedrequest}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

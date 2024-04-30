@@ -1,0 +1,261 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Novena | Request History</title>
+{% endblock %}
+
+
+{% block home %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block Request %}
+<li class="active"><a href="#">Request</a>
+    <ul class="dropdown">
+        <li><a href="/requestblood/">Request Blood</a></li>
+        <li><a href="/requestorgan/">Request Organ</a></li>
+        <li><a href="/requesthistory/">Request History</a></li>
+    </ul>
+</li>
+{% endblock %}
+
+{% block body %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Request History</h2>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <a style="color: #13a2b7;">Request</a>
+                        <span>Request History</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<div class="class pt-5" style="background: #bfb9c8fc;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-user-plus xyz" style="color: #1e88e5;"></i>
+                        </div><br>
+                        <div>
+                            Request Made <br>
+                            {{Dict.requestmade}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-clock-o" style="color:#efb000;"></i>
+                        </div><br>
+                        <div>
+                            Pending Request <br>
+                            {{Dict.requestpending}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-check-circle xyz" style="color: green;"></i>
+                        </div><br>
+                        <div>
+                            Approved Request<br>
+                            {{Dict.requestapproved}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-times-circle xyz" style="color: red;"></i>
+                        </div><br>
+                        <div>
+                            Rejected Request <br>
+                            {{Dict.requestrejected}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="class pt-5 pb-5 mb-3" style="background: #bfb9c8fc;">
+        <div class="container">
+            <H4 class="text-center">My Blood Request History</H4><br>
+            <table class="table table-light table-hover table-bordered table-striped">
+                <thead class="bg-dark">
+                    <tr>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Patient's Name</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Reason </th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Blood Group</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Unit</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Date</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Doctor</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Request till Date</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Request till Time</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Status</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in Requests %}
+                    <tr>
+                        
+                        
+                        <td>{{Patient.firstname}} {{Patient.lastname}}</td>
+                        <td> {{t.reason}}</td>
+                        
+                        <td>{{t.bloodgroup}}</td>
+                        <td>{{t.unit}}</td>
+                        <td>{{t.date}}</td>
+                        <td>{{t.doctor}}</td>
+                        <td>{{t.ondate}}</td>
+                        <td>{{t.ontime}}</td>
+                        {% if t.status == 2 %}
+                        <td><span class="label1 success1"> Approved</span></td>
+                        
+                        {% elif t.status == 3 %}
+                        <td><span class="label1 danger1">Rejected</span></td>
+                        {% else %}
+                        <td><span style="color: white;margin-left: 0px;" class="label1 info1">Pending</span></td>
+                        {% endif %}
+                        
+        
+                    </tr>
+                    {% endfor %}
+        
+                </tbody>
+            
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-user-plus xyz" style="color: #1e88e5;"></i>
+                        </div><br>
+                        <div>
+                            Request Made <br>
+                            {{Dicts.requestmade}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-clock-o" style="color:#efb000;"></i>
+                        </div><br>
+                        <div>
+                            Pending Request <br>
+                            {{Dicts.requestpending}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-check-circle xyz" style="color: green;"></i>
+                        </div><br>
+                        <div>
+                            Approved Request<br>
+                            {{Dicts.requestapproved}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-times-circle xyz" style="color: red;"></i>
+                        </div><br>
+                        <div>
+                            Rejected Request <br>
+                            {{Dicts.requestrejected}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="class pt-5 pb-3" style="background: #bfb9c8fc;">
+        <div class="container">
+            <H4 class="text-center">My Organ Request History</H4><br>
+            <table class="table table-light table-hover table-bordered table-striped">
+                <thead class="bg-dark">
+                    <tr>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Patient's Name</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Reason </th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Blood Group</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Organ</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Date</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Doctor</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Request till Date</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Request till Time</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Status</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in organRequests %}
+                    <tr>
+                        
+                        
+                        <td>{{Patient.firstname}} {{Patient.lastname}}</td>
+                        <td> {{t.reason}}</td>
+                        
+                        <td>{{t.bloodgroup}}</td>
+                        <td>{{t.organ}}</td>
+                        <td>{{t.date}}</td>
+                        <td>{{t.doctor}}</td>
+                        <td>{{t.ondate}}</td>
+                        <td>{{t.ontime}}</td>
+                        {% if t.status == 2 %}
+                        <td><span class="label1 success1"> Approved</span></td>
+                        
+                        {% elif t.status == 3 %}
+                        <td><span class="label1 danger1">Rejected</span></td>
+                        {% else %}
+                        <td><span style="color: white;margin-left: 0px;" class="label1 info1">Pending</span></td>
+                        {% endif %}
+                        
+        
+                    </tr>
+                    {% endfor %}
+        
+                </tbody>
+            
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

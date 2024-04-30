@@ -1,0 +1,207 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Novena | Our Services</title>
+{% endblock %}
+
+{% block home %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block pages %}
+<li><a href="#">Pages</a>
+    <ul class="dropdown">
+        <li><a href="/services/1/">Services</a></li>
+        {% if request.user.is_authenticated %}
+        {% if Users.donor %}
+        <li><a href="/rewards/">Rewards</a></li>
+        {% elif Users.super %}
+        <li><a href="/rewardsadmin/">Rewards</a></li>
+        {% endif %}
+        {% endif %}
+        <li><a href="/team/">Our Team</a></li>
+        <li><a href="/locations/">Donate Locations</a></li>
+        <li><a href="/joinus/">Join Us</a></li>
+    </ul>
+</li>
+{% endblock %}
+
+{% block body %}
+<!-- Header Section End -->
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Our Services</h2>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <span>Services</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Services Section Begin -->
+<section class="services-page spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 order-lg-1 mb-5">
+                <div class="services__sidebar">
+                    <div class="services__accordion">
+                        <div class="services__title">
+                            <h4><img src="{% static 'img/icons/services-icon.png' %}" alt=""> All services</h4>
+                        </div>
+                        <div class="">
+                            {% for i in Ser %}
+                            <div class="card">
+                                <div class="card-heading">
+                                    {% if i.title == Service.title %}
+                                    <a class="text-danger" href="/services/{{i.id}}">{{i.id}}. {{i.title}}</a>
+                                    {% else %}
+                                    <a class="text-success" href="/services/{{i.id}}">{{i.id}}. {{i.title}}</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="services__appoinment">
+                    <div class="services__title">
+                        <h4><img src="{% static 'img/icons/services-icon.png' %}" alt=""> Comment On US</h4>
+                    </div>
+                    {% for i in messages %}
+                    <div class="alert alert-success" role="alert">
+                        {{i}}
+                    </div>
+                    {% endfor %}
+                    <form action=" " method="post">
+                        {% csrf_token %}
+                        <input name="name" type="text" placeholder="Name">
+                        <input name="email" type="email" placeholder="Email">
+                        <input name="occupasion" type="text" placeholder="Occupasion">
+                        <input name="comment" type="text" placeholder="Comment">
+                        <div style="padding: 2px;">
+                            <div class="form-check-inline pl-3">
+                                <input type="radio" name="star" id="inlineRadio1" value="1">
+                                <label style="color: rgb(226, 203, 30); padding-bottom: 12px;">★</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" name="star" id="inlineRadio2" value="2">
+                                <label style="color: rgb(226, 203, 30); padding-bottom: 12px;">★★</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" name="star" id="inlineRadio3" value="3">
+                                <label style="color: rgb(226, 203, 30); padding-bottom: 12px;">★★★</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" name="star" id="inlineRadio4" value="4">
+                                <label style="color: rgb(226, 203, 30); padding-bottom: 12px;">★★★★</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" name="star" id="inlineRadio5" value="5">
+                                <label style="color: rgb(226, 203, 30); padding-bottom: 12px;">★★★★★</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="site-btn">Comment</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 order-lg-2">
+                <div class="services__details">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="services__details__title">
+                                <span>Donate Blood & Organ</span>
+                                <h3>{{Service.title}}</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="services__details__widget">
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3>Save Lives</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="services__details__pic">
+                        <img src="{{Service.pic.url}}" height="450px" alt="">
+                    </div>
+                    <div class="services__details__text">
+                        <p>{{Service.description}}</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="services__details__item__pic">
+                                <img src="{{Service.pic1.url}}" height="200px" alt="">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="services__details__item__pic">
+                                <img src="{{Service.pic2.url}}" height="200px" alt="">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="services__details__item__pic">
+                                <img src="{{Service.pic3.url}}" height="200px" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="services__details__desc">
+                        <p>{{Service.quotes}}
+                        </p>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <ul class="services__details__feature">
+                                    {% if Service.tag1 %}
+                                    <li><i class="fa fa-check-circle"></i> {{Service.tag1}}</li>
+                                    {% endif %}
+                                    {% if Service.tag2 %}
+                                    <li><i class="fa fa-check-circle"></i> {{Service.tag2}}</li>
+                                    {% endif %}
+                                    {% if Service.tag3 %}
+                                    <li><i class="fa fa-check-circle"></i> {{Service.tag3}}</li>
+                                    {% endif %}
+                                    {% if Service.tag4 %}
+                                    <li><i class="fa fa-check-circle"></i> {{Service.tag4}}</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <ul class="services__details__feature">
+                                    {% if Service.tag5 %}
+                                    <li><i class="fa fa-check-circle"></i> {{Service.tag5}}</li>
+                                    {% endif %}
+                                    {% if Service.tag6 %}
+                                    <li><i class="fa fa-check-circle"></i> {{Service.tag6}}</li>
+                                    {% endif %}
+                                    {% if Service.tag7 %}
+                                    <li><i class="fa fa-check-circle"></i> {{Service.tag7}}</li>
+                                    {% endif %}
+                                    {% if Service.tag8 %}
+                                    <li><i class="fa fa-check-circle"></i> {{Service.tag8}}</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        <p>{{Service.excert}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Services Section End -->
+{% endblock %}

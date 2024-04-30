@@ -1,0 +1,644 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Aesthetic Template">
+    <meta name="keywords" content="Aesthetic, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {% block title %}
+    <title>Novena | Home</title>
+    {% endblock %}
+
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3-alpha1/dist/js/bootstrap.bundle.min.js" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css">
+
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__logo">
+            <a href="/"><img src="{% static 'img/logo.png' %}" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap">
+        </div>
+        <ul class="offcanvas__widget">
+            <li><i class="fa fa-phone"></i> +91 969 097 4412</li>
+            <li><i class="fa fa-map-marker"></i> Dehradun, 248001 Uttrakhand</li>
+            <li><i class="fa fa-clock-o"></i> Mon to Sat 9:00am to 18:00pm</li>
+        </ul>
+        <div class="offcanvas__social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <ul class="header__top__left">
+                            <li><i class="fa fa-phone"></i> +91 969 097 4412</li>
+                            <li><i class="fa fa-map-marker"></i> Dehradun, 248001 Uttrakhand</li>
+                            <li><i class="fa fa-clock-o"></i> Mon to Sat 9:00am to 18:00pm</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="header__top__right">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="header__logo">
+                        <a href=" "><img src="{% static 'img/logo.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="header__menu__option">
+                        <nav class="header__menu">
+                            <ul>
+                                {% block home %}
+                                <li class="active"><a href="/">Home</a></li>
+                                {% endblock %}
+                                {% block about %}
+                                <li><a href="/about/">About US</a></li>
+                                {% endblock %}
+                                {% if request.user.is_authenticated %}
+                                {% if Users.doctor %}
+                                {% block Request %}
+                                <li><a href="#">Request</a>
+                                    <ul class="dropdown">
+                                        <li><a href="/requestblood/">Request Blood</a></li>
+                                        <li><a href="/requestorgan/">Request Organ</a></li>
+                                        <li><a href="/requesthistory/">Request History</a></li>
+                                    </ul>
+                                </li>
+                                {% endblock %}
+                                {% elif Users.donor %}
+                                {% block Donate %}
+                                <li><a href="#">Donate</a>
+                                    <ul class="dropdown">
+                                        <li><a href="/donateblood/">Donate Blood</a></li>
+                                        <li><a href="/donateorgan/">Donate Organ</a></li>
+                                        <li><a href="/donatehistory/">Donate History</a></li>
+                                    </ul>
+                                </li>
+                                {% endblock %}
+                                {% elif Users.super %}
+                                {% block BloodAdmin %}
+                                <li><a href="#">Blood</a>
+                                    <ul class="dropdown">
+                                        <li><a href="/bloodstock/">Blood Stock</a></li>
+                                        <li><a href="/blooddonationadmin/">Blood Donation</a></li>
+                                        <li><a href="/bloodrequestadmin/">Blood Request</a></li>
+                                        <li><a href="/bloodhistoryadmin/">Blood History</a></li>
+                                    </ul>
+                                </li>
+                                {% endblock %}
+                                {% block OrganAdmin %}
+                                <li><a href="#">Organ</a>
+                                    <ul class="dropdown">
+                                        <li><a href="/organstock/">Organ Stock</a></li>
+                                        <li><a href="/organdonationadmin/">Organ Donation</a></li>
+                                        <li><a href="/organrequestadmin/">Organ Request</a></li>
+                                        <li><a href="/organhistoryadmin/">Organ History</a></li>
+                                    </ul>
+                                </li>
+                                {% endblock %}
+                                {% else %}
+                                {% endif %}
+                                {% endif %}
+                                {% block pages %}
+                                <li><a href="#">Pages</a>
+                                    <ul class="dropdown">
+                                        <li><a href="/services/1/">Services</a></li>
+                                        {% if request.user.is_authenticated %}
+                                        {% if Users.donor %}
+                                        <li><a href="/rewards/">Rewards</a></li>
+                                        {% elif Users.super %}
+                                        <li><a href="/rewardsadmin/">Rewards</a></li>
+                                        {% endif %}
+                                        {% endif %}
+                                        <li><a href="/team/">Our Team</a></li>
+                                        <li><a href="/locations/">Donate Locations</a></li>
+                                        <li><a href="/joinus/">Join Us</a></li>
+                                    </ul>
+                                </li>
+                                {% endblock %}
+                                {% block Blogs %}
+                                <li><a href="/blog/">Our Blogs</a></li>
+                                {% endblock %}
+                                {% block contact %}
+                                <li><a href="/contact/">Contact</a></li>
+                                {% endblock %}
+                                {% block login %}
+                                {% if request.user.is_authenticated %}
+                                <li class="text-danger"><a class="text-danger" style="font-weight: bold;"
+                                        href="#">{{request.user}}</a>
+                                    <ul class="dropdown">
+                                        <li><a href="/profile/">Profile</a></li>
+                                        <li><a href="/logout/">Logout</a></li>
+                                    </ul>
+                                </li>
+                                {% else %}
+                                <li class="text-danger"><a class="text-danger" style="font-weight: bold;"
+                                        href="/login_register/">
+                                        LOGIN</i></a></li>
+                                {% endif %}
+                                {% endblock %}
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    {% block body %}
+    <!-- Hero Section Begin -->
+    <section class="hero spad set-bg" data-setbg="{% static 'img/hero-bg.png' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="hero__text">
+                        {% if Users.doctor %}
+                        <span>Request BLOOD & ORGAN </span>
+                        <h2>Need Blood & Organ ? Don't Worry...</h2>
+                        <a href="/contact/" class="primary-btn normal-btn">Request Now</a>
+                        {% else %}
+                        <span>DONATE BLOOD & ORGAN </span>
+                        <h2>Be The First To Donate Blood & Organ</h2>
+                        <a href="/contact/" class="primary-btn normal-btn">Donate Now</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Consultation Section Begin -->
+    <section class="consultation">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="consultation__form">
+                        <div class="section-title">
+                            <span class="text-danger">LET'S HELP TOGETHER</span>
+                            <h2>Join now</h2>
+                        </div>
+                        {% for i in messages %}
+                        <div class="alert alert-success" role="alert">
+                            {{i}}
+                        </div>
+                        {% endfor %}
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <input name="name" type="text" placeholder="Name">
+                            <input name="email" type="email" placeholder="Email">
+                            <input name="phone" type="phone" placeholder="phone">
+                            <input name="city" type="text" placeholder="City">
+                            <input name="state" type="text" placeholder="State">
+                            <input name="pin" type="text" placeholder="Postcode">
+                            <button name="join" type="submit" class="site-btn">JOIN</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="consultation__text">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="consultation__text__item">
+                                    <div class="section-title">
+                                        <span style="color: rgba(16, 40, 90, 0.849);font-weight: bold;">MAKE AN
+                                            IMPACT</span>
+                                        <h2>Find Best Services With <b>NOVENA</b></h2>
+                                    </div>
+                                    <p>Your financial gift can <span
+                                            style="color: rgba(23, 61, 144, 0.849);font-weight: bold;">help a thousand
+                                            children</span> who struggle from illnesses. Your gift can provide the
+                                        necessary medicine, treatment, and other essentials.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="consultation__video set-bg"
+                                    data-setbg="{% static 'img/consultation-video.jpg' %}">
+                                    <a href="https://www.youtube.com/watch?v=PXsuI67s2AA"
+                                        class="play-btn video-popup"><i class="fa fa-play"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Consultation Section End -->
+
+    <!-- Chooseus Section Begin -->
+    <section class="chooseus spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <span>Why choose us?</span>
+                        <h2>Offer for you</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="chooseus__item">
+                        <img src="{% static 'img/icons/ci-1.png' %}" alt="">
+                        <h5>Advanced equipment</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="chooseus__item">
+                        <img src="{% static 'img/icons/ci-2.png' %}" alt="">
+                        <h5>Qualified doctors</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="chooseus__item">
+                        <img src="{% static 'img/icons/ci-3.png' %}" alt="">
+                        <h5>Certified services</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="chooseus__item">
+                        <img src="{% static 'img/icons/ci-4.png' %}" alt="">
+                        <h5>Emergency care</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Chooseus Section End -->
+
+    <!-- Services Section Begin -->
+    <section class="services spad set-bg" data-setbg="{% static 'img/services-bg.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-6">
+                    <div class="section-title">
+                        <span>Our services</span>
+                        <h2>Best Services for you</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="services__btn">
+                        <a href="/contact/" class="primary-btn">Contact us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="services__item">
+                        <div class="services__item__icon">
+                            <img src="{% static 'img/icons/ci-1.png' %}" alt="">
+                        </div>
+                        <div class="services__item__text">
+                            <h5>Blood Products</h5>
+                            <p>Novena is dedicated to providing the highest quality blood products and services. Our
+                                staff is ready to serve you 24/7.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="services__item">
+                        <div class="services__item__icon">
+                            <img src="{% static 'img/icons/ci-2.png' %}" alt="">
+                        </div>
+                        <div class="services__item__text">
+                            <h5>Biomedical Services</h5>
+                            <p>We offer a comprehensive menu of services to support & manage spectrum of
+                                medicine, cellular-therapy related research projects.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="services__item">
+                        <div class="services__item__icon">
+                            <img src="{% static 'img/icons/ci-3.png' %}" alt="">
+                        </div>
+                        <div class="services__item__text">
+                            <h5>Organ Products</h5>
+                            <p>Organ donation is a safe and life-saving procedure that can help multiple individuals in
+                                need.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="services__item">
+                        <div class="services__item__icon">
+                            <img src="{% static 'img/icons/ci-4.png' %}" alt="">
+                        </div>
+                        <div class="services__item__text">
+                            <h5>Plasma Products</h5>
+                            <p>Plasma donation is encouraged to ensure a stable blood supply for emergencies and medical
+                                treatments.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End -->
+
+    <!-- Team Section Begin -->
+    <section class="team spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <span>Our Team</span>
+                        <h2>Meet Our Members</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="team__item">
+                        <img src="{% static 'img/team/team-1.jpg' %}" alt="">
+                        <h5>Aashish Chauhan</h5>
+                        <span>Patient Support Specialist</span>
+                        <div class="team__item__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="team__item">
+                        <img src="{% static 'img/team/team-2.jpg' %}" alt="">
+                        <h5>Mohit Kumar Sharma</h5>
+                        <span>Blood Donation Advocate</span>
+                        <div class="team__item__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="team__item">
+                        <img src="{% static 'img/team/team-3.jpg' %}" alt="">
+                        <h5>Akshay Rana</h5>
+                        <span>Donor Relations Manager</span>
+                        <div class="team__item__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Team Section End -->
+
+    <!-- Gallery Begin -->
+    <div class="gallery">
+        <div class="gallery__container">
+            <div class="grid-sizer"></div>
+            <div class="gc__item set-bg" data-setbg="{% static 'img/gallery/gallery-1.jpg' %}">
+                <a href="{% static 'img/gallery/gallery-1.jpg' %}" class="image-popup"><i
+                        class="fa fa-search-plus"></i></a>
+            </div>
+            <div class="gc__item set-bg" data-setbg="{% static 'img/gallery/gallery-2.jpg' %}">
+                <a href="{% static 'img/gallery/gallery-2.jpg' %}" class="image-popup"><i
+                        class="fa fa-search-plus"></i></a>
+            </div>
+            <div class="gc__item set-bg" data-setbg="{% static 'img/gallery/gallery-3.jpg' %}">
+                <a href="{% static 'img/gallery/gallery-3.jpg' %}" class="image-popup"><i
+                        class="fa fa-search-plus"></i></a>
+            </div>
+            <div class="gc__item gc__item__large set-bg" data-setbg="{% static 'img/gallery/gallery-4.jpg' %}">
+                <a href="{% static 'img/gallery/gallery-4.jpg' %}" class="image-popup"><i
+                        class="fa fa-search-plus"></i></a>
+            </div>
+            <div class="gc__item set-bg" data-setbg="{% static 'img/gallery/gallery-5.jpg' %}">
+                <a href="{% static 'img/gallery/gallery-5.jpg' %}" class="image-popup"><i
+                        class="fa fa-search-plus"></i></a>
+            </div>
+            <div class="gc__item set-bg" data-setbg="{% static 'img/gallery/gallery-6.jpg' %}">
+                <a href="{% static 'img/gallery/gallery-6.jpg' %}" class="image-popup"><i
+                        class="fa fa-search-plus"></i></a>
+            </div>
+            <div class="gc__item set-bg" data-setbg="{% static 'img/gallery/gallery-7.jpg' %}">
+                <a href="{% static 'img/gallery/gallery-7.jpg' %}" class="image-popup"><i
+                        class="fa fa-search-plus"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- Gallery End -->
+
+    <!-- Latest News Begin -->
+    <section class="latest spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-6">
+                    <div class="section-title">
+                        <span>Our Blogs</span>
+                        <h2>Be a Lifesaver, Donate Today!</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="latest__btn">
+                        <a href="/blog/" class="primary-btn">View all Blogs</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for i in Blogs %}
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="blog__item">
+                        <div class="blog__item__pic">
+                            <a href="/blogdetails/{{i.id}}/"><img src="{{i.pic1.url}}" alt=""></a>
+                        </div>
+                        <div class="blog__item__text">
+                            <h5><a href="/blogdetails/{{i.id}}/">{{i.title}}</a></h5>
+                            <ul>
+                                <li><img src="{% static 'img/blog/blog-author.jpg' %}" alt=""> Aashish Chauhan | <span
+                                        class="text-danger">{{i.date}}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- Latest News End -->
+    {% endblock %}
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="footer__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="footer__logo">
+                            <h2 class="text-light" style="font-weight: bolder;"><span class="text-danger"
+                                    style="font-weight: bolder;">N</span>OVENA</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-8">
+                        <div class="footer__newslatter">
+                            <form action="/" method="post">
+                                {% csrf_token %}
+                                <input type="email" name="email" placeholder="Enter Your Email">
+                                <button name="subscribe" type="submit" class="site-btn">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="footer__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>Company</h5>
+                        <ul>
+                            <li><a href="/about/">About Us</a></li>
+                            <li><a href="/team/">Our Team</a></li>
+                            <li><a href="/locations/">Find Blood Banks</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="/blog/">Our Blogs</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h5>Quick links</h5>
+                        <ul>
+                            <li><a href="/services/1/">Our Services</a></li>
+                            <li><a href="/locations/">Find Best Hospitals</a></li>
+                            <li><a href="/contact/">Contact Us</a></li>
+                            <li><a href="/joinus/">Join US</a></li>
+                            <li><a href="#">24x7 Help Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__address">
+                        <h5>Contact Us</h5>
+                        <ul>
+                            <li><i class="fa fa-map-marker"></i> Dehradun, 248001 Uttrakhand</li>
+                            <li><i class="fa fa-phone"></i> +91 969 097 4412</li>
+                            <li><i class="fa fa-envelope"></i> aashishrajput782@gmail.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-6">
+                    <div class="footer__map">
+                        <iframe
+                            src="https://maps.google.com/maps?q=Dehradun&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                            height="190" style="border:0" frameborder="0" scrolling="no"></iframe><a
+                            href="https://123movies-to.org"></a><br>
+                        <a href="https://www.embedgooglemap.net"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="footer__copyright__text">
+                            <p>Copyright &copy; All rights reserved | <span class="text-light"
+                                    style="font-weight: bolder;"><span class="text-danger"
+                                        style="font-weight: bolder;">N</span>OVENA</span></p>
+                        </div>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <div class="col-lg-5">
+                        <ul>
+                            <li>All Rights Reserved</li>
+                            <li>Terms & Use</li>
+                            <li>Privacy Policy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Novena | Request Organ</title>
+{% endblock %}
+
+{% block home %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block Request %}
+<li class="active"><a href="#">Request</a>
+    <ul class="dropdown">
+        <li><a href="/requestblood/">Request Blood</a></li>
+        <li><a href="/requestorgan/">Request Organ</a></li>
+        <li><a href="/requesthistory/">Request History</a></li>
+    </ul>
+</li>
+{% endblock %}
+
+{% block body %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Request Organ</h2>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <a style="color: #13a2b7;">Request</a>
+                        <span>Request Organ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<div class="class pt-5" style="background: #bfb9c8fc;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-user-plus xyz" style="color: #1e88e5;"></i>
+                        </div><br>
+                        <div>
+                            Request Made <br>
+                            {{Dict.requestmade}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-spinner" style="color:#efb000;"></i>
+                        </div><br>
+                        <div>
+                            Pending Request <br>
+                            {{Dict.requestpending}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-check-circle xyz" style="color: green;"></i>
+                        </div><br>
+                        <div>
+                            Approved Request<br>
+                            {{Dict.requestapproved}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-times-circle xyz" style="color: red;"></i>
+                        </div><br>
+                        <div>
+                            Rejected Request <br>
+                            {{Dict.requestrejected}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="authen">
+        <div class="containers">
+            <input type="checkbox" id="flip">
+            <div class="covers">
+                <div class="front">
+                    <img src="{% static 'img/organ.jpg' %}" alt="">
+                    <div class="text">
+                        <span class="text-1">Request Organ <br> Don't Worry...</span>
+                        <span class="text-2">A small Organ can bring back one from the dead</span>
+                    </div>
+                </div>
+            </div>
+            <div class="forms">
+                <div class="form-content">
+                    <div class="signup-form">
+                    </div>
+                    <div class="login-form">
+                        <div class="title">Request Organ</div>
+                        {% for i in messages %}
+                        <div class="alert alert-success" role="alert">
+                            {{i}}
+                        </div>
+                        {% endfor %}
+                        <form action=" " method="post">
+                            {% csrf_token %}
+                            <div class="input-boxes">
+                                <div class="input-box">
+                                    <i class="fa fa-user"></i>
+                                    <input name="patient" type="text" placeholder="Enter Patient Name" disabled value="{{User.firstname}} {{User.lastname}}">
+                                </div>
+                                <div class="input-box">
+                                    <i class="fa fa-tint"></i>
+                                    <input name="bloodgroup" type="text" disabled placeholder="Enter Patient Bloodgroup" value="{{User.bloodgroup}}">
+                                </div>
+                                <div class="input-box">
+                                    <i class="fa fa-medkit"></i>
+                                    <input name="reason" type="text" placeholder="Enter Reason" value="{{User.reason}}">
+                                </div>
+                                <div class="input-box">
+                                    <i class="fa fa-child"></i>
+                                    <input name="age" type="text" placeholder="Enter Patient Age" value="{{User.age}}">
+                                </div>
+                                <div class="input-box">
+                                    <i class="fa fa-user-md"></i>
+                                    <input name="doctor" type="text" placeholder="Enter Patient doctor Name" value="{{User.doctor}}">
+                                </div>
+                                <div class="input-box datepicker__item">
+                                    <input name="ondate" type="text" placeholder="Date" class="datepicker">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <div class="input-box">
+                                    <i class="fa fa-clock-o"></i>
+                                    <input name="ontime" type="time" value="09:00" id="appt" name="appt">
+                                </div>
+                                <div class="input-box">
+                                    <select name="organ" class="w-100 text-secondary" id="" required>
+                                        <option disabled="disabled" selected="selected">Choose Organ</option>
+                                        {% for i in Organ %}
+                                        <option value={{i.id}}>{{i.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="button input-box">
+                                    <input type="submit" name="request" value="Request Organ">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,172 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Novena | Login_Register</title>
+{% endblock %}
+{% block home %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block login %}
+{% if request.user.is_authenticated %}
+<li class="text-danger active"><a class="text-danger" style="font-weight: bold;" href="#">{{request.user}}</a>
+    <ul class="dropdown">
+        <li><a href="/profile/">Profile</a></li>
+        <li><a href="/logout/">Logout</a></li>
+    </ul>
+</li>
+{% else %}
+<li class="text-danger active"><a class="text-danger" style="font-weight: bold;"
+    href="/login_register/">
+    LOGIN</i></a></li>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Login</h2>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <a class="text-danger" href="/login_register/">Login</a>
+                        <label for="flip"><span>Signup</span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<div class="authen">
+    <div class="containers">
+        <input type="checkbox" id="flip">
+        <div class="covers">
+            <div class="front">
+                <img src="{% static 'img/frontImg.jpg' %}" alt="">
+                <div class="text">
+                    <span class="text-1">Complete miles of journey <br> with one step</span>
+                    <span class="text-2">Let's get started</span>
+                </div>
+            </div>
+            <div class="back">
+                <img class="backImg" src="{% static 'img/backImg.jpg' %}" alt="">
+                <div class="text">
+                    <span class="text-1">Every new friend is a <br> new adventure</span>
+                    <span class="text-2">Let's get connected</span>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="forms">
+            <div class="form-content">
+                <div class="signup-form">
+                    <div class="title">Signup</div>
+                    {% for i in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{i}}
+                    </div>
+                    {% endfor %}
+                    <form action=" " method="post">
+                        {% csrf_token %}
+                        <div class="input-boxes">
+                            <div class="row">
+                                <div class=" col-md-6 input-box">
+                                    <i class="fa fa-user"></i>
+                                    <input name="firstname" type="text" placeholder="First Name" required>
+                                </div>
+                                <div class=" col-md-6 input-box">
+                                    <i class="fa fa-user"></i>
+                                    <input name="lastname" type="text" placeholder="Last Name" required>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <i class="fa fa-user"></i>
+                                <input name="username" type="text" placeholder="Enter your Username" required>
+                            </div>
+                            <div class="input-box">
+                                <i class="fa fa-envelope"></i>
+                                <input name="email" type="text" placeholder="Enter your Email" required>
+                            </div>
+                            <div class="row">
+                                <div class=" col-md-6 input-box">
+                                    <i class="fa fa-phone"></i>
+                                    <input name="phone" type="text" placeholder="Enter your Phone" required>
+                                </div>
+                                <div class="col-md-6 input-box">
+                                <select name="gender" class="w-100 text-secondary" required>
+                                    <option disabled="disabled" selected="selected">Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <i class="fa fa-lock"></i>
+                                <input name="password" type="password" placeholder="Enter your Password" required>
+                            </div>
+                            <div class="input-box">
+                                <i class="fa fa-lock"></i>
+                                <input name="cpassword" type="password" placeholder="Confirm your Password" required>
+                            </div>
+                            <div class="input-box">
+                                <select name="bloodgroup" class="w-100 text-secondary" required>
+                                    <option disabled="disabled" selected="selected">Blood Group</option>
+                                    {% for i in BloodGroup %}
+                                    <option value={{i.bloodgroup}}>{{i.bloodgroup}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="input-box">
+                                <select name="actype" class="w-100 text-secondary" required>
+                                    <option disabled="disabled" selected="selected">Type of Account</option>
+                                    <option value="Donor">Donor</option>
+                                    <option value="Patient">Patient</option>
+                                </select>
+                            </div>
+                            <div class="button input-box">
+                                <input type="submit" name="register" value="Create Account">
+                            </div>
+                            <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="login-form">
+                    <div class="title">Login</div>
+                    {% for i in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{i}}
+                    </div>
+                    {% endfor %}
+                    <form action=" " method="post">
+                        {% csrf_token %}
+                        <div class="input-boxes">
+                            <div class="input-box">
+                                <i class="fa fa-envelope"></i>
+                                <input name="username" type="text" placeholder="Enter your username" required>
+                            </div>
+                            <div class="input-box">
+                                <i class="fa fa-lock"></i>
+                                <input name="password" type="password" placeholder="Enter your password" required>
+                            </div>
+                            <div class="text"><a style="color: #5b13b9;" href="/forgetusername/">Forgot password?</a></div>
+                            <div class="button input-box">
+                                <input type="submit" name="LOGIN" value="LOGIN">
+                            </div>
+                            <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

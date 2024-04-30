@@ -1,0 +1,111 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Novena | Join Us</title>
+{% endblock %}
+
+{% block home %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block pages %}
+<li><a href="#">Pages</a>
+    <ul class="dropdown">
+        <li><a href="/services/1/">Services</a></li>
+        {% if request.user.is_authenticated %}
+        {% if Users.donor %}
+        <li><a href="/rewards/">Rewards</a></li>
+        {% elif Users.super %}
+        <li><a href="/rewardsadmin/">Rewards</a></li>
+        {% endif %}
+        {% endif %}
+        <li><a href="/team/">Our Team</a></li>
+        <li><a href="/locations/">Donate Locations</a></li>
+        <li><a href="/joinus/">Join Us</a></li>
+    </ul>
+</li>
+{% endblock %}
+
+{% block body %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Join Our Group </h2>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <span>Join Us </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Pricing Section Begin -->
+<div class="authen">
+    <div class="containers">
+        <input type="checkbox">
+        <div class="covers">
+            <div class="front">
+                <img src="{% static 'img/blood.jpg' %}" alt="">
+                <div class="text">
+                    <span class="text-1">Donate Blood <br> Saves Lives</span>
+                    <span class="text-2">One bag of blood can bring back one from the dead</span>
+                </div>
+            </div>
+        </div>
+        <div class="forms">
+            <div class="form-content">
+                <div class="signup-form">
+                </div>
+                <div class="login-form">
+                    <div class="title">Join Our Group</div>
+                    {% for i in messages %}
+                    <div class="alert alert-success" role="alert">
+                        {{i}}
+                    </div>
+                    {% endfor %}
+                    <form action=" " method="post">
+                        {% csrf_token %}
+                        <div class="input-boxes">
+                            <div class="input-box">
+                                <i class="fa fa-user"></i>
+                                <input name="name" type="text" placeholder="Enter your name" required>
+                            </div>
+                            <div class="input-box">
+                                <i class="fa fa-envelope"></i>
+                                <input name="email" type="text" placeholder="Enter your Email" required>
+                            </div>
+                            <div class="input-box">
+                                <i class="fa fa-phone"></i>
+                                <input name="phone" type="text" placeholder="Enter your Phone" required>
+                            </div>
+                            <div class="input-box">
+                                <i class="fa fa-building-o"></i>
+                                <input name="city" type="text" placeholder="Enter your City" required>
+                            </div>
+                            <div class="input-box">
+                                <i class="fa fa-building"></i>
+                                <input name="state" type="text" placeholder="Enter your State" required>
+                            </div>
+                            <div class="input-box">
+                                <i class="fa fa-map-marker"></i>
+                                <input name="pin" type="text" placeholder="Enter your Postcode" required>
+                            </div>
+                            <div class="button input-box">
+                                <input type="submit" name="join" value="JOIN">
+                            </div>
+                        </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,235 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Novena | About Us</title>
+{% endblock %}
+
+{% block home %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block about %}
+<li class="active"><a href="/about/">About US</a></li>
+{% endblock %}
+
+{% block body %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>About Us</h2>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <span>About</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- About Section Begin -->
+<section class="about spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="about__video set-bg" data-setbg="{% static 'img/about-video.jpg' %}">
+                    <a href="https://www.youtube.com/watch?v=PXsuI67s2AA" class="play-btn video-popup"><i
+                            class="fa fa-play"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="about__text">
+                    <div class="section-title">
+                        <span style="color: rgba(16, 40, 90, 0.849);font-weight: bold;">GET INVOLVED</span>
+                        <h2>Welcome to the <span class="text-danger"
+                                style="font-size: 27px; font-weight: bold;">Novena</span></h2>
+                    </div>
+                    <p><span style="color: rgba(131, 14, 28, 0.849);font-weight: bold;">Novena</span> is public donation
+                        center with blood and Organ donation members in the changing health care system. Novena is one
+                        of the nation's oldest and largest nonprofit transfusion organizations. We provide a blood-Organ
+                        and volunteer services across the India. With our national footprint, deep community roots and
+                        specialized services, we are the thread that connects people and resources together to fuel
+                        progress in transfusion medicine.</p>
+                    <ul>
+                        <li><i class="fa fa-check-circle"></i> Inspiring people to give blood and Organs.</li>
+                        <li><i class="fa fa-check-circle"></i> Specialist Blood, Organ donors and clinical supervision.
+                        </li>
+                        <li><i class="fa fa-check-circle"></i> Producing a safe and ready blood supply.</li>
+                        <li><i class="fa fa-check-circle"></i> Increasing communication with our members.</li>
+                        <li><i class="fa fa-check-circle"></i> High quality assessment, diagnosis and treatment.</li>
+                        <li><i class="fa fa-check-circle"></i> Offering specialized patient services and
+                            pharmaceuticals.</li>
+                    </ul>
+                    {% if Users.doctor %}
+                    <a href="#" class="primary-btn normal-btn">Request Now</a>
+                    {% else %}
+                    <a href="#" class="primary-btn normal-btn">Donate Now</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- About Section End -->
+
+<!-- Chooseus Section Begin -->
+<section class="chooseus spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="section-title">
+                    <span>Why choose us?</span>
+                    <h2>Offer for you</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="chooseus__item">
+                    <img src="{% static 'img/icons/ci-1.png' %}" alt="">
+                    <h5>Advanced equipment</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="chooseus__item">
+                    <img src="{% static 'img/icons/ci-2.png' %}" alt="">
+                    <h5>Qualified doctors</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="chooseus__item">
+                    <img src="{% static 'img/icons/ci-3.png' %}" alt="">
+                    <h5>Certified services</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="chooseus__item">
+                    <img src="{% static 'img/icons/ci-4.png' %}" alt="">
+                    <h5>Emergency care</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Chooseus Section End -->
+
+<!-- Testimonials Section Begin -->
+<section class="testimonials spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="section-title">
+                    <span>Testimonials</span>
+                    <h2>Happy clients</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="testimonial__slider owl-carousel">
+                {% for i in Testimonial %}
+                <div class="col-lg-6">
+                    <div class="testimonial__item">
+                        <div class="testimonial__author">
+                            <div class="testimonial__author__icon">
+                                <i class="fa fa-quote-left"></i>
+                            </div>
+                            <div class="testimonial__author__text">
+                                <h5>{{i.name}}</h5>
+                                <span>{{i.occupasion}}</span>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            {% if i.stars == 1 %}
+                            <i class="fa fa-star"></i>
+                            {% elif i.stars == 2 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            {% elif i.stars == 3 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            {% elif i.stars == 4 %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            {% else %}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            {% endif%}
+                        </div>
+                        <p>{{i.comment}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Testimonials Section End -->
+
+<!-- Team Section Begin -->
+<section class="team spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="section-title">
+                    <span>Our Team</span>
+                    <h2>Meet Our Members</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="team__item">
+                    <img src="{% static 'img/team/team-1.jpg' %}" alt="">
+                    <h5>Aashish Chauhan</h5>
+                    <span>Patient Support Specialist</span>
+                    <div class="team__item__social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="team__item">
+                    <img src="{% static 'img/team/team-2.jpg' %}" alt="">
+                    <h5>Mohit Kumar Sharma</h5>
+                    <span>Blood Donation Advocate</span>
+                    <div class="team__item__social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="team__item">
+                    <img src="{% static 'img/team/team-3.jpg' %}" alt="">
+                    <h5>Akshay Rana</h5>
+                    <span>Donor Relations Manager</span>
+                    <div class="team__item__social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Team Section End -->
+
+{% endblock %}

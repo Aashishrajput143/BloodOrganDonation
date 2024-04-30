@@ -1,0 +1,233 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Novena | Organ Stock</title>
+{% endblock %}
+
+{% block home %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block OrganAdmin %}
+<li class="active"><a href="#">Organ</a>
+    <ul class="dropdown">
+        <li><a href="/organstock/">Organ Stock</a></li>
+        <li><a href="/organdonationadmin/">Organ Donation</a></li>
+        <li><a href="/organrequestadmin/">Organ Request</a></li>
+        <li><a href="/organhistoryadmin/">Organ History</a></li>
+    </ul>
+</li>
+{% endblock %}
+{% block body %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2> Organ Stock</h2>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <a style="color: #13a2b7;">Organ Admin</a>
+                        <span>Organ Stock</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<div class="class pt-5" style="background: #bfb9c8fc;">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h5>Heart <i class="fa fa-tint text-danger"></i></h5>
+                        </div><br><br>
+                        <div>
+                                <a href="/organstockdetails/1/"><h5><span class="btn btn-success text-light">{{Stocks.Heart}}</span></h5></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h5>Lungs <i class="fa fa-tint text-danger"></i></h5>
+                        </div><br><br>
+                        <div>
+                                <a href="/organstockdetails/2/"><h5><span class="btn btn-success text-light">{{Stocks.Lungs}}</span></h5></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h5>Liver <i class="fa fa-tint text-danger"></i></h5>
+                        </div><br><br>
+                        <div>
+                                <a href="/organstockdetails/3/"><h5><span class="btn btn-success text-light">{{Stocks.Liver}}</span></h5></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h5>Kidney <i class="fa fa-tint text-danger"></i></h5>
+                        </div><br><br>
+                        <div>
+                                <a href="/organstockdetails/4/"><h5><span class="btn btn-success text-light">{{Stocks.Kidney}}</span></h5></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h5>Pancreas <i class="fa fa-tint text-danger"></i></h5>
+                        </div><br><br>
+                        <div>
+                                <a href="/organstockdetails/5/"><h5><span class="btn btn-success text-light">{{Stocks.Pancreas}}</span></h5></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h5>Lg-Intestine <i class="fa fa-tint text-danger"></i></h5>
+                        </div><br><br>
+                        <div>
+                                 <a href="/organstockdetails/6/"><h5><span class="btn btn-success text-light">{{Stocks.LargeIntestine}}</span></h5>
+                            </h5>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h5>Sm-Intestine <i class="fa fa-tint text-danger"></i></h5>
+                        </div><br><br>
+                        <div>
+                                 <a href="/organstockdetails/7/"><h5><span class="btn btn-success text-light">{{Stocks.SmallIntestine}}</span></h5>
+                            </h5>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h5>Corineas <i class="fa fa-tint text-danger"></i></h5>
+                        </div><br><br>
+                        <div>
+                                <a href="/organstockdetails/8/"><h5><span class="btn btn-success text-light">{{Stocks.Corineas}}</span></h5></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h5>Valves <i class="fa fa-tint text-danger"></i></h5>
+                        </div><br><br>
+                        <div>
+                                <a href="/organstockdetails/9/"><h5><span class="btn btn-success text-light">{{Stocks.Valves}}</span></h5></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h5>Veins <i class="fa fa-tint text-danger"></i></h5>
+                        </div><br><br>
+                        <div>
+                                <a href="/organstockdetails/10/"><h5><span class="btn btn-success text-light">{{Stocks.Veins}}</span></h5></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h5>Skin <i class="fa fa-tint text-danger"></i></h5>
+                        </div><br><br>
+                        <div>
+                                <a href="/organstockdetails/11/"><h5><span class="btn btn-success text-light">{{Stocks.Skin}}</span></h5></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <h5>Bones <i class="fa fa-tint text-danger"></i></h5>
+                        </div><br><br>
+                        <div>
+                                <a href="/organstockdetails/12/"><h5><span class="btn btn-success text-light">{{Stocks.Bones}}</span></h5></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 class="text-center">Update Stock Quantity</h3><br>
+    <div style="display: table;margin-right: auto;margin-left: auto;padding-bottom: 80px;" class="mt-3">
+
+        <form class="form-inline" action="/organstock/" method="POST">
+            {% csrf_token %}
+            <div class="form-group mx-sm-3 mb-6">
+
+                <select name="organ">
+                    <option disabled="disabled" selected="selected">Choose Organ</option>
+                    {% for i in St %}
+                    <option value="{{i.id}}">{{i.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group mx-sm-3 mb-6">
+                <select name="bloodgroup">
+                    <option disabled="disabled" selected="selected">Choose Bloodgroup</option>
+                    {% for i in stock %}
+                    <option value="{{i.id}}">{{i.bloodgroup}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group mx-sm-3 mb-6">
+
+                <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity">
+            </div>
+            <div class="form-group mx-sm-3 mb-6">
+
+                <button type="submit" class="btn btn-primary pl-3 pr-3 p-1">Update Stock</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

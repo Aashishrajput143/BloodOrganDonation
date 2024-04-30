@@ -1,0 +1,176 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Novena | Donate Blood</title>
+{% endblock %}
+
+{% block home %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block Donate %}
+<li class="active"><a href="#">Donate</a>
+    <ul class="dropdown">
+        <li><a href="/donateblood/">Donate Blood</a></li>
+        <li><a href="/donateorgan/">Donate Organ</a></li>
+        <li><a href="/donatehistory/">Donate History</a></li>
+    </ul>
+</li>
+{% endblock %}
+
+{% block body %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Donate Blood</h2>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <a style="color: #13a2b7;">Donate</a>
+                        <span>Donate Blood</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<div class="class pt-5" style="background: #bfb9c8fc;">
+    <div class="container">
+
+
+        <div class="row">
+
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-user-plus xyz" style="color: #1e88e5;"></i>
+                        </div><br>
+                        <div>
+                            Request Made <br>
+                            {{Dict.requestmade}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-spinner" style="color:#efb000;"></i>
+                        </div><br>
+                        <div>
+                            Pending Request <br>
+                            {{Dict.requestpending}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-check-circle xyz" style="color: green;"></i>
+                        </div><br>
+                        <div>
+                            Approved Request<br>
+                            {{Dict.requestapproved}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-times-circle xyz" style="color: red;"></i>
+                        </div><br>
+                        <div>
+                            Rejected Request <br>
+                            {{Dict.requestrejected}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="authen">
+        <div class="containers">
+            <input type="checkbox" id="flip">
+            <div class="covers">
+                <div class="front">
+                    <img src="{% static 'img/blood.jpg' %}" alt="">
+                    <div class="text">
+                        <span class="text-1">Donate Blood <br> Saves Lives</span>
+                        <span class="text-2">One bag of blood can bring back one from the dead</span>
+                    </div>
+                </div>
+            </div>
+            <div class="forms">
+                <div class="form-content">
+                    <div class="signup-form">
+                    </div>
+                    <div class="login-form">
+                        <div class="title">Donate Blood</div>
+                        {% for i in messages %}
+                        <div class="alert alert-success" role="alert">
+                            {{i}}
+                        </div>
+                        {% endfor %}
+                        <form action=" " method="post">
+                            {% csrf_token %}
+                            <div class="input-boxes">
+                                <div class="input-box">
+                                    <i class="fa fa-tint"></i>
+                                    <input name="bloodgroup" type="text" placeholder="Enter your Bloodgroup" disabled
+                                        value="{{User.bloodgroup}}">
+                                </div>
+                                <div class="input-box">
+                                    <i class="fa fa-medkit"></i>
+                                    <input name="disease" type="text" placeholder="Enter your Disease (If any)"
+                                        value="{{User.disease}}">
+                                </div>
+                                <div class="input-box">
+                                    <i class="fa fa-child"></i>
+                                    <input name="age" type="text" placeholder="Enter your Age" value="{{User.age}}">
+                                </div>
+                                <div class="input-box datepicker__item">
+                                    <input name="ondate" type="text" placeholder="Date" class="datepicker">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <div class="input-box">
+                                    <i class="fa fa-clock-o"></i>
+                                    <input name="ontime" type="time" value="09:00" step="900" id="appt" name="appt">
+                                </div>
+                                <div class="input-box">
+                                    <select name="location" class="w-100 text-secondary" required>
+                                        <option disabled="disabled" selected="selected">Blood Bank Location</option>
+                                        {% for i in Locations %}
+                                        <option value={{i.id}}>{{i.name}}, {{i.city}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="input-box">
+                                    <i class="fa fa-tint"></i>
+                                    <input name="amount" type="text" placeholder="Enter Unit (ml)"
+                                        value="">
+                                </div>
+                                <div class="button input-box">
+                                    <input type="submit" name="donate" value="Donate Blood">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

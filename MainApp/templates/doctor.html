@@ -1,0 +1,119 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Novena | Doctor</title>
+{% endblock %}
+
+{% block home %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block pages %}
+<li><a href="#">Pages</a>
+    <ul class="dropdown">
+        <li><a href="/services/1/">Services</a></li>
+        {% if request.user.is_authenticated %}
+        {% if Users.donor %}
+        <li><a href="/rewards/">Rewards</a></li>
+        {% elif Users.super %}
+        <li><a href="/rewardsadmin/">Rewards</a></li>
+        {% endif %}
+        {% endif %}
+        <li><a href="/team/">Our Team</a></li>
+        <li><a href="/locations/">Donate Locations</a></li>
+        <li><a href="/joinus/">Join Us</a></li>
+    </ul>
+</li>
+{% endblock %}
+
+{% block body %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Our Doctors</h2>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <a href="/about/">About</a>
+                        <span>Our Team</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Doctor Section Begin -->
+<section class="doctor spad">
+    <div class="container">
+        {% for i in Doctor %}
+        {% if i.status == 1 %}
+        <div class="doctor__item">
+            <div class="row">
+                <div class="col-lg-6 order-lg-1">
+                    <div class="doctor__item__pic">
+                        <img src="{{i.pic.url}}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-2">
+                    <div class="doctor__item__text">
+                        <span>{{i.position}}</span>
+                        <h2>{{i.name}}</h2>
+                        <p>{{i.description}}</p>
+                        <ul>
+                            <li><i class="fa fa-check-circle"></i> {{i.tag1}}</li>
+                            <li><i class="fa fa-check-circle"></i> {{i.tag2}}</li>
+                            <li><i class="fa fa-check-circle"></i> {{i.tag3}}</li>
+                            <li><i class="fa fa-check-circle"></i> {{i.tag4}}</li>
+                        </ul>
+                        <div class="doctor__item__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="doctor__item">
+            <div class="row">
+                <div class="col-lg-6 order-lg-4">
+                    <div class="doctor__item__pic">
+                        <img src="{% static 'img/doctor/doctor-2.jpg' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-3">
+                    <div class="doctor__item__text  doctor__item__text--left">
+                        <span>MBBS, MRCP(UK), CCST(DERM)</span>
+                        <h2>Dr Jessica Jones</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
+                            gravida. Risus commodo viverra maecenas accumsan.sis. </p>
+                        <ul>
+                            <li><i class="fa fa-check-circle"></i> Routine and medical care</li>
+                            <li><i class="fa fa-check-circle"></i> Excellence in Healthcare every</li>
+                            <li><i class="fa fa-check-circle"></i> Building a healthy environment</li>
+                            <li><i class="fa fa-check-circle"></i> cumsan lacus vel facilisis.</li>
+                        </ul>
+                        <div class="doctor__item__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+<!-- Doctor Section End -->
+{% endblock %}

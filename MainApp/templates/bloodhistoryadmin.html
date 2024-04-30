@@ -1,0 +1,154 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Novena | Blood History Admin</title>
+{% endblock %}
+
+{% block home %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block BloodAdmin %}
+<li class="active"><a href="#">Blood</a>
+    <ul class="dropdown">
+        <li><a href="/bloodstock/">Blood Stock</a></li>
+        <li><a href="/blooddonationadmin/">Blood Donation</a></li>
+        <li><a href="/bloodrequestadmin/">Blood Request</a></li>
+        <li><a href="/bloodhistoryadmin/">Blood History</a></li>
+    </ul>
+</li>
+{% endblock %}
+
+{% block body %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option spad set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Blood History Admin</h2>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <a style="color: #13a2b7;">Blood Admin</a>
+                        <span>Blood History Admin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<div class="class pt-5" style="background: #bfb9c8fc;">
+    <div class="container">
+
+
+        <div class="row pb-5">
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-users" style="color: #1e88e5;"></i>
+                        </div><br>
+                        <div>
+                            Available Donors <br>
+                            {{Stocks.totaldonors}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-spinner" style="color:#efb000;"></i>
+                        </div><br>
+                        <div>
+                            Total Requests <br>
+                            {{Stocks.totalrequest}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-tint xyz" style="color:#d41010;"></i>
+                        </div><br>
+                        <div>
+                            Total Blood Unit (ml) <br>
+                            {{Stocks.totalbloodunit}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <div class="blood">
+                            <i class="fa fa-check-circle" style="color:green;"></i>
+                        </div><br>
+                        <div>
+                            Approved Requests <br>
+                            {{Stocks.totalapprovedrequest}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="class pt-5 pb-3" style="background: #bfb9c8fc;">
+        <div class="container">
+            <H4 class="text-center">Blood History Details</H4><br>
+            <table class="table table-light table-hover table-bordered table-striped">
+                <thead class="bg-dark">
+                    <tr>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Patient Username</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Age</th>
+                        
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Reason</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Blood Group</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Unit (ml)</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Request Date</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Date</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">time</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Status</th>
+                        <th scope="col" style="background-color: black;color: rgb(192, 192, 192);">Stock Status</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in requests %}
+                    <tr>
+                        <td> {{t.patient}}</td>
+                        <td>{{t.age}}</td>
+                        <td>{{t.reason}}</td>
+                        <td>{{t.bloodgroup}}</td>
+                        <td>{{t.unit}}</td>
+                        <td>{{t.date}}</td>
+                        <td>{{t.ondate}}</td>
+                        <td>{{t.ontime}}</td>
+                        {% if t.status == 4 %}
+                        <td><span class="label success"> Done</span></td>
+                        <td><span class="label success"> {{t.unit}} Unit Deducted From Stock</span></td>
+                        {% else %}
+                        <td><span class="label danger">Rejected</span></td>
+                        <td><span class="label danger"> 0 Unit Deducted From Stock</span></td>
+                        {% endif %}
+                        
+                        
+                    
+                    </tr>
+                    {% endfor %}
+        
+                </tbody>
+            
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
